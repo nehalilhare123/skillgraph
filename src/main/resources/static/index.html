@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>SkillPath | Career Skill Explorer</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <div class="nav-inner">
+
+            <div class="brand">
+
+                <div class="brand-logo">
+                    S
+                </div>
+
+                <div class="brand-text">
+
+                    <h1>SkillPath</h1>
+
+                    <p>
+                        Career Skill Explorer
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="nav-status">
+
+                <span class="status-dot"></span>
+
+                Graph Connected
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="container">
+
+
+        <!-- HERO -->
+
+        <section class="hero">
+
+            <div class="hero-badge">
+                GRAPH-POWERED CAREER DISCOVERY
+            </div>
+
+            <h2>
+                Turn your skills into
+                <span>career possibilities.</span>
+            </h2>
+
+            <p class="hero-description">
+
+                SkillPath connects your existing skills with
+                career roles and learning resources to help
+                you discover your next move.
+
+            </p>
+
+        </section>
+
+
+        <!-- ================= EXPLORER ================= -->
+
+        <section class="explorer-card">
+
+            <div class="explorer-header">
+
+                <div>
+
+                    <p class="section-label">
+                        CAREER EXPLORER
+                    </p>
+
+                    <h3>
+                        Explore your career path
+                    </h3>
+
+                    <p class="section-description">
+
+                        Select a student profile and we'll
+                        analyse the connected skills and
+                        career opportunities.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="selector-area">
+
+                <div class="select-wrapper">
+
+                    <label for="studentSelect">
+                        Student profile
+                    </label>
+
+                    <select id="studentSelect">
+
+                        <option value="">
+                            Loading students...
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button id="recommendButton"
+                        class="primary-button"
+                        disabled>
+
+                    Find Career Paths
+
+                    <span class="button-arrow">
+                        →
+                    </span>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= LOADING ================= -->
+
+        <section id="loadingState"
+                 class="state-card hidden">
+
+            <div class="loader"></div>
+
+            <h3>
+                Finding your career paths
+            </h3>
+
+            <p>
+                We're analysing your connected skills
+                and career relationships.
+            </p>
+
+        </section>
+
+
+        <!-- ================= ERROR ================= -->
+
+        <section id="errorState"
+                 class="state-card error hidden">
+
+            <div class="state-icon error-icon">
+                !
+            </div>
+
+            <h3>
+                Something went wrong
+            </h3>
+
+            <p id="errorMessage">
+                We couldn't load the requested information.
+            </p>
+
+            <button id="retryButton"
+                    class="secondary-button">
+
+                Try Again
+
+            </button>
+
+        </section>
+
+
+        <!-- ================= EMPTY ================= -->
+
+        <section id="emptyState"
+                 class="state-card hidden">
+
+            <div class="state-icon empty-icon">
+                ?
+            </div>
+
+            <h3>
+                No career paths found
+            </h3>
+
+            <p>
+                We couldn't find a career path connected
+                to this student's current skills.
+            </p>
+
+        </section>
+
+
+        <!-- ================= RESULTS ================= -->
+
+        <section id="resultsSection"
+                 class="results hidden">
+
+
+            <div class="results-header">
+
+                <div>
+
+                    <p class="section-label">
+                        YOUR CAREER MAP
+                    </p>
+
+                    <h3>
+                        Career paths for
+                        <span id="studentName"></span>
+                    </h3>
+
+                    <p class="section-description">
+
+                        These opportunities were discovered
+                        by following relationships in the
+                        skill graph.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Student skills -->
+
+            <div class="skills-summary">
+
+                <div class="summary-title">
+
+                    <span class="summary-icon">
+                        ✦
+                    </span>
+
+                    <div>
+
+                        <h4>
+                            Your connected skills
+                        </h4>
+
+                        <p>
+                            Skills currently associated
+                            with this profile.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div id="studentSkills"
+                     class="skills">
+
+                </div>
+
+            </div>
+
+
+            <!-- Recommendation cards -->
+
+            <div id="resultsContainer">
+
+            </div>
+
+
+            <!-- Graph explanation -->
+
+            <div class="graph-explanation">
+
+                <div class="graph-heading">
+
+                    <p class="section-label">
+                        HOW SKILLPATH WORKS
+                    </p>
+
+                    <h3>
+                        Following the connections
+                    </h3>
+
+                </div>
+
+
+                <div class="graph-flow">
+
+                    <div class="graph-node">
+
+                        <strong>Student</strong>
+
+                        <span>
+                            Your profile
+                        </span>
+
+                    </div>
+
+
+                    <div class="graph-line">
+                        →
+                    </div>
+
+
+                    <div class="graph-node">
+
+                        <strong>Skill</strong>
+
+                        <span>
+                            Your abilities
+                        </span>
+
+                    </div>
+
+
+                    <div class="graph-line">
+                        →
+                    </div>
+
+
+                    <div class="graph-node">
+
+                        <strong>Job Role</strong>
+
+                        <span>
+                            Career match
+                        </span>
+
+                    </div>
+
+
+                    <div class="graph-line">
+                        →
+                    </div>
+
+
+                    <div class="graph-node">
+
+                        <strong>Course</strong>
+
+                        <span>
+                            Keep learning
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+            SkillPath
+        </p>
+
+        <span>
+            Career discovery powered by CognoDB
+        </span>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
